@@ -44,7 +44,7 @@ Items will be laid out following either the main axis (from main-start to main-e
 
 ### Example
 
-### Resources
+## Resources
 - https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 - https://developer.mozilla.org/en-US/docs/Web/CSS
 - https://flexboxfroggy.com/
@@ -53,3 +53,5 @@ Items will be laid out following either the main axis (from main-start to main-e
 - https://nekocalc.com/px-to-rem-converter
 - https://codepen.io/samnorton/pen/zBYMJG
 - https://developer.mozilla.org/en-US/docs/Web/CSS/display
+- https://cssgridgarden.com/
+- https://css-tricks.com/snippets/css/complete-guide-grid/
