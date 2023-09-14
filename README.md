@@ -8,7 +8,7 @@ Items will be laid out following either the main axis (from main-start to main-e
 
 ### Properties for the Parent (flex container)
 - display
-  - This defines a flex container; inline or block depending on the given value. It enables a flex content fot all its direct children
+  - This defines a flex container; inline or block depending on the given value. It enables a flex content fot all its direct children (flex or inline-flex)
 - flex-direction
   - This establishes the main-axis, thus defining the direction flex items are places in the flex container (row, row-reverse, column, column-reverse)
 - flex-wrap
@@ -42,7 +42,23 @@ Items will be laid out following either the main axis (from main-start to main-e
 - align-self
   - This allows the default alignment (or the one specified by align-items) to be overridden for individual flex items.
 
-### Example
+### Examples
+
+### Display Types
+The display CSS property sets whether an element is treated as a block or inline box and the layout used for its children, such as flow layout, grid or flex. Here are some important types.
+- block
+  - A block-level element always starts on a new line, and the browsers automatically add some space (a margin) before and after the element. A block-level element always takes up the full width available (stretches out to the left and right as far as it can).
+- inline-block
+  - Compared to display: inline, the major difference is that display: inline-block allows to set a width and height on the element.
+  - Also, with display: inline-block, the top and bottom margins/paddings are respected, but with display: inline they are not.
+  - Compared to display: block, the major difference is that display: inline-block does not add a line-break after the element, so the element can sit next to other elements.
+- none (display nothing)
+- grid (will  be covered in different section)
+
+### Old versions of flex
+- If you are looking at a blog post (or whatever) about Flexbox and you see display: box; or a property that is box-{*}, you are looking at the old 2009 version of Flexbox.
+- If you are looking at a blog post (or whatever) about Flexbox and you see display: flexbox; or the flex() function, you are looking at an awkward tweener phase in 2011.
+- If you are looking at a blog post (or whatever) about Flexbox and you see display: flex; and flex-{*} properties, you are looking at the current (as of this writing) specification.
 
 ## Resources
 - https://css-tricks.com/snippets/css/a-guide-to-flexbox/
@@ -53,5 +69,6 @@ Items will be laid out following either the main axis (from main-start to main-e
 - https://nekocalc.com/px-to-rem-converter
 - https://codepen.io/samnorton/pen/zBYMJG
 - https://developer.mozilla.org/en-US/docs/Web/CSS/display
-- https://cssgridgarden.com/
+- https://web.dev/learn/css/box-model/
 - https://css-tricks.com/snippets/css/complete-guide-grid/
+- https://cssgridgarden.com/
