@@ -1,4 +1,22 @@
 # CSS
+
+- [CSS](#css)
+  - [Flexbox](#flexbox)
+    - [Properties for the Parent (flex container)](#properties-for-the-parent-flex-container)
+    - [Properties for the Children (flex items)](#properties-for-the-children-flex-items)
+    - [Examples](#examples)
+    - [Display Types](#display-types)
+    - [Old versions of flex](#old-versions-of-flex)
+  - [Grid](#grid)
+    - [Important terminology](#important-terminology)
+    - [CSS Grid Properties](#css-grid-properties)
+    - [Properties for the Parent (Grid Container)](#properties-for-the-parent-grid-container)
+    - [Properties for the Children (Grid Items)](#properties-for-the-children-grid-items)
+    - [Special Units](#special-units)
+    - [Some notes](#some-notes)
+  - [Position attribute](#position-attribute)
+  - [Resources](#resources)
+
 ## Flexbox
 Horizontal or vertical one dimensional layout.  
 Flexbox is a module not a property, so some properties are meant for the container (parent element, known as "flex container") and some are meant to be set on the children (said "flex items").
@@ -90,9 +108,73 @@ To get started you have to define a container element as a grid with display: gr
   - Here’s the grid area between row grid lines 1 and 3, and column grid lines 1 and 3.
   - ![grid area](https://css-tricks.com/wp-content/uploads/2018/11/terms-grid-area.svg)
 
+### CSS Grid Properties
+There are to many properties to cover properly so I will only cover the completly essentials here, go to the [CSS Tricks article](https://css-tricks.com/snippets/css/complete-guide-grid/#aa-css-grid-properties) for more information.
+
 ### Properties for the Parent (Grid Container)
+**display:**
+
+Defines the element as a grid container and establishes a new grid formatting context for its contents.
+Values: `grid` for a block-level grid and `inline-grid` for an inline-level grid
+
+**grid-template-columns, grid-template-rows:**
+
+Defines the columns and rows of the grid with a space-separated list of values. The values represent the track size, and the space between them represents the grid line.
+
+*Values:*
+- `track-size` – can be a length, a percentage, or a fraction of the free space in the grid using the fr unit (more on this unit over at DigitalOcean)
+- `line-name` – an arbitrary name of your choosing
+
+*Example:*
+
+```css
+ .container {
+    grid-template-columns: ...  ...;
+    /* e.g. 
+        1fr 1fr
+        minmax(10px, 1fr) 3fr
+        repeat(5, 1fr)
+        50px auto 100px 1fr
+    */
+    grid-template-rows: ... ...;
+    /* e.g. 
+        min-content 1fr min-content
+        100px 1fr max-content
+    */
+}
+```
+Grid lines are automatically assigned positive numbers from these assignments (-1 being an alternate for the very last row).  
+![css grid without explicit naming](https://css-tricks.com/wp-content/uploads/2018/11/template-columns-rows-01.svg)
+
+But you can choose to explicitly name the lines. Note the bracket syntax for the line names:  
+```css
+.container {
+  grid-template-columns: [first] 40px [line2] 50px [line3] auto [col4-start] 50px [five] 40px [end];
+  grid-template-rows: [row1-start] 25% [row1-end] 100px [third-line] auto [last-line];
+}
+```
+![css grid with explicit naming](https://css-tricks.com/wp-content/uploads/2018/11/template-column-rows-02.svg)
+
+**grid-template-area:**
 
 ### Properties for the Children (Grid Items)
+- grid-column-start, grid-column-end, grid-row-start, grid-row-end
+- grid-column, grid-row
+- grid area
+- justify-self
+- align-self
+- place-self
+
+### Special Units
+- fr units
+- sizing keywords
+- sizing functions
+- repeat()/minmax()
+- masonry
+- subgrid
+
+### Some notes
+- Something like a navbar should not be in the grid
 
 ## Position attribute
 - Position attribute
