@@ -6,6 +6,8 @@ Flexbox is a module not a property, so some properties are meant for the contain
 ![Image explaining flexbox](https://css-tricks.com/wp-content/uploads/2018/11/00-basic-terminology.svg)
 Items will be laid out following either the main axis (from main-start to main-end) or the cross axis (from cross-start to cross-end).
 
+*Note:* Flexbox layout is most appropriate to the components of an application, and small-scale layouts, while the Grid layout is intended for larger scale layouts.
+
 ### Properties for the Parent (flex container)
 - display
   - This defines a flex container; inline or block depending on the given value. It enables a flex content fot all its direct children (flex or inline-flex)
@@ -43,6 +45,7 @@ Items will be laid out following either the main axis (from main-start to main-e
   - This allows the default alignment (or the one specified by align-items) to be overridden for individual flex items.
 
 ### Examples
+See folder
 
 ### Display Types
 The display CSS property sets whether an element is treated as a block or inline box and the layout used for its children, such as flow layout, grid or flex. Here are some important types.
@@ -59,6 +62,41 @@ The display CSS property sets whether an element is treated as a block or inline
 - If you are looking at a blog post (or whatever) about Flexbox and you see display: box; or a property that is box-{*}, you are looking at the old 2009 version of Flexbox.
 - If you are looking at a blog post (or whatever) about Flexbox and you see display: flexbox; or the flex() function, you are looking at an awkward tweener phase in 2011.
 - If you are looking at a blog post (or whatever) about Flexbox and you see display: flex; and flex-{*} properties, you are looking at the current (as of this writing) specification.
+
+## Grid
+CSS Grid Layout (aka “Grid” or “CSS Grid”), is a two-dimensional grid-based layout system that, compared to any web layout system of the past, completely changes the way we design user interfaces. CSS has always been used to layout our web pages, but it’s never done a very good job of it. First, we used tables, then floats, positioning and inline-block, but all of these methods were essentially hacks and left out a lot of important functionality (vertical centering, for instance). Flexbox is also a very great layout tool, but its one-directional flow has different use cases — and they actually work together quite well! Grid is the very first CSS module created specifically to solve the layout problems we’ve all been hacking our way around for as long as we’ve been making websites.
+
+To get started you have to define a container element as a grid with display: grid, set the column and row sizes with grid-template-columns and grid-template-rows, and then place its child elements into the grid with grid-column and grid-row.
+
+### Important terminology
+- grid container
+  - The element on which `display: grid` is applied. Its the direct parent of all the grid items
+- grid item
+  - The children  (i.e. direct descendants) of the grid container.
+- grid line
+  - The dividing lines that make up the structure of the grid. They can be either vertical (“column grid lines”) or horizontal (“row grid lines”).
+  - Here the yellow line is an example of a column grid line.
+  - ![in yellow: grid line](https://css-tricks.com/wp-content/uploads/2018/11/terms-grid-line.svg)
+- grid cell
+  - The space between two adjacent row and two adjacent column grid lines. It’s a single “unit” of the grid.
+  - Here’s the grid cell between row grid lines 1 and 2, and column grid lines 2 and 3.
+  - ![in yellow: grid cell](https://css-tricks.com/wp-content/uploads/2018/11/terms-grid-cell.svg)
+- grid track
+  - The space between two adjacent grid lines. You can think of them as the columns or rows of the grid.
+  - Heres the grid track between the second and third-row grid lines
+  - ![grid track](https://css-tricks.com/wp-content/uploads/2021/08/terms-grid-track.svg)
+- grid area
+  - The total space surrounded by four grid lines. A grid area may be composed of any number of grid cells.
+  - Here’s the grid area between row grid lines 1 and 3, and column grid lines 1 and 3.
+  - ![grid area](https://css-tricks.com/wp-content/uploads/2018/11/terms-grid-area.svg)
+
+### Properties for the Parent (Grid Container)
+
+### Properties for the Children (Grid Items)
+
+## Position attribute
+- Position attribute
+- Column and Row/Table (more bootstrap stuff)
 
 ## Resources
 - https://css-tricks.com/snippets/css/a-guide-to-flexbox/
