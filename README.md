@@ -141,17 +141,17 @@ Defines the columns and rows of the grid with a space-separated list of values. 
         min-content 1fr min-content
         100px 1fr max-content
     */
-}
+  }
 ```
 Grid lines are automatically assigned positive numbers from these assignments (-1 being an alternate for the very last row).  
 ![css grid without explicit naming](https://css-tricks.com/wp-content/uploads/2018/11/template-columns-rows-01.svg)
 
 But you can choose to explicitly name the lines. Note the bracket syntax for the line names:  
 ```css
-.container {
-  grid-template-columns: [first] 40px [line2] 50px [line3] auto [col4-start] 50px [five] 40px [end];
-  grid-template-rows: [row1-start] 25% [row1-end] 100px [third-line] auto [last-line];
-}
+  .container {
+    grid-template-columns: [first] 40px [line2] 50px [line3] auto [col4-start] 50px [five] 40px [end];
+    grid-template-rows: [row1-start] 25% [row1-end] 100px [third-line] auto [last-line];
+  }
 ```
 ![css grid with explicit naming](https://css-tricks.com/wp-content/uploads/2018/11/template-column-rows-02.svg)
 
