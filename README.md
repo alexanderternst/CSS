@@ -15,9 +15,15 @@
     - [grid-template-columns, grid-template-rows:](#grid-template-columns-grid-template-rows)
     - [grid-template-area:](#grid-template-area)
   - [Properties for the Children (Grid Items)](#properties-for-the-children-grid-items)
+    - [grid-column-start, grid-column-end, grid-row-start, grid-row-end](#grid-column-start-grid-column-end-grid-row-start-grid-row-end)
+    - [grid-column, grid-row](#grid-column-grid-row)
+    - [grid area](#grid-area)
+    - [justify-self](#justify-self)
+    - [align-self](#align-self)
+    - [place-self](#place-self)
   - [Special Units](#special-units)
   - [Some notes](#some-notes)
-  - [Position attribute](#position-attribute)
+- [Position attribute](#position-attribute)
 - [Resources](#resources)
 
 # Flexbox
@@ -129,22 +135,21 @@ Defines the columns and rows of the grid with a space-separated list of values. 
 - `line-name` – an arbitrary name of your choosing
 
 *Example:*
-
 ```css
- .container {
-    grid-template-columns: ...  ...;
-    /* e.g. 
-        1fr 1fr
-        minmax(10px, 1fr) 3fr
-        repeat(5, 1fr)
-        50px auto 100px 1fr
-    */
-    grid-template-rows: ... ...;
-    /* e.g. 
-        min-content 1fr min-content
-        100px 1fr max-content
-    */
-  }
+.container {
+  grid-template-columns: ...  ...;
+  /* e.g. 
+      1fr 1fr
+      minmax(10px, 1fr) 3fr
+      repeat(5, 1fr)
+      50px auto 100px 1fr
+  */
+  grid-template-rows: ... ...;
+  /* e.g. 
+      min-content 1fr min-content
+      100px 1fr max-content
+  */
+}
 ```
 Grid lines are automatically assigned positive numbers from these assignments (-1 being an alternate for the very last row).  
 ![css grid without explicit naming](https://css-tricks.com/wp-content/uploads/2018/11/template-columns-rows-01.svg)
@@ -193,13 +198,97 @@ Defines a grid template by referencing the names of the grid areas which are spe
 - `.` - a period signifies an empty grid cell
 - `none` - no grid areas are defined
 
+*Example:*
+```css
+.item-a {
+  grid-area: header;
+}
+.item-b {
+  grid-area: main;
+}
+.item-c {
+  grid-area: sidebar;
+}
+.item-d {
+  grid-area: footer;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 50px 50px 50px 50px;
+  grid-template-rows: auto;
+  grid-template-areas: 
+    "header header header header"
+    "main main . sidebar"
+    "footer footer footer footer";
+}
+```
+
+That’ll create a grid that’s four columns wide by three rows tall. The entire top row will be composed of the header area. The middle row will be composed of two main areas, one empty cell, and one sidebar area. The last row is all footer.
+![graphic of grid-template-area](https://css-tricks.com/wp-content/uploads/2018/11/dddgrid-template-areas.svg)
+
 ## Properties for the Children (Grid Items)
-- grid-column-start, grid-column-end, grid-row-start, grid-row-end
-- grid-column, grid-row
-- grid area
-- justify-self
-- align-self
-- place-self
+### grid-column-start, grid-column-end, grid-row-start, grid-row-end
+
+Determines a grid item’s location within the grid by referring to specific grid lines. grid-column-start/grid-row-start is the line where the item begins, and grid-column-end/grid-row-end is the line where the item ends.
+
+*Values:*
+- `line` - can be a number to refer to a numbered grid line, or a name to refer to a named grid line
+- `span <number>` - the item will span across the provided number of grid tracks
+- `span <name>` - the item will span across until it hits the next line with the provided name
+- `auto` -  indicates auto-placement, an automatic span, or a default span of one
+```css
+.item {
+  grid-column-start: <number> | <name> | span <number> | span <name> | auto;
+  grid-column-end: <number> | <name> | span <number> | span <name> | auto;
+  grid-row-start: <number> | <name> | span <number> | span <name> | auto;
+  grid-row-end: <number> | <name> | span <number> | span <name> | auto;
+}
+```
+
+*Examples (with images):*
+```css
+.item-a {
+  grid-column-start: 2;
+  grid-column-end: five;
+  grid-row-start: row1-start;
+  grid-row-end: 3;
+}
+```
+![grid item example](https://css-tricks.com/wp-content/uploads/2018/11/grid-column-row-start-end-01.svg)
+
+```css
+.item-b {
+  grid-column-start: 1;
+  grid-column-end: span col4-start;
+  grid-row-start: 2;
+  grid-row-end: span 2;
+}
+```
+![grid item example](https://css-tricks.com/wp-content/uploads/2018/11/grid-column-row-start-end-02.svg)
+
+- If no grid-column-end/grid-row-end is declared, the item will span 1 track by default.
+- Items can overlap each other. You can use z-index to control their stacking order.
+
+### grid-column, grid-row
+
+
+
+### grid area
+
+
+
+### justify-self
+
+
+
+### align-self
+
+
+
+### place-self
+
+
 
 ## Special Units
 - fr units
@@ -210,9 +299,9 @@ Defines a grid template by referencing the names of the grid areas which are spe
 - subgrid
 
 ## Some notes
-- Something like a navbar should not be in the grid
+- Something like a navbar should not be in the grid, but seperate because Grid is for layout of content on the website.
 
-## Position attribute
+# Position attribute
 - Position attribute
 - Column and Row/Table (more bootstrap stuff)
 
