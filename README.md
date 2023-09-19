@@ -267,8 +267,8 @@ Determines a grid item’s location within the grid by referring to specific gri
 ```
 ![grid item example](https://css-tricks.com/wp-content/uploads/2018/11/grid-column-row-start-end-02.svg)
 
-    If no grid-column-end/grid-row-end is declared, the item will span 1 track by default.
-    Items can overlap each other. You can use z-index to control their stacking order.
+- If no grid-column-end/grid-row-end is declared, the item will span 1 track by default.
+- Items can overlap each other. You can use z-index to control their stacking order.
 
 ### grid-column, grid-row
 
