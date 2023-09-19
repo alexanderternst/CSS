@@ -1,23 +1,26 @@
 # CSS
 
 - [CSS](#css)
-  - [Flexbox](#flexbox)
-    - [Properties for the Parent (flex container)](#properties-for-the-parent-flex-container)
-    - [Properties for the Children (flex items)](#properties-for-the-children-flex-items)
-    - [Examples](#examples)
-    - [Display Types](#display-types)
-    - [Old versions of flex](#old-versions-of-flex)
-  - [Grid](#grid)
-    - [Important terminology](#important-terminology)
-    - [CSS Grid Properties](#css-grid-properties)
-    - [Properties for the Parent (Grid Container)](#properties-for-the-parent-grid-container)
-    - [Properties for the Children (Grid Items)](#properties-for-the-children-grid-items)
-    - [Special Units](#special-units)
-    - [Some notes](#some-notes)
+- [Flexbox](#flexbox)
+  - [Properties for the Parent (flex container)](#properties-for-the-parent-flex-container)
+  - [Properties for the Children (flex items)](#properties-for-the-children-flex-items)
+  - [Examples](#examples)
+  - [Display Types](#display-types)
+  - [Old versions of flex](#old-versions-of-flex)
+- [Grid](#grid)
+  - [Important terminology](#important-terminology)
+  - [CSS Grid Properties](#css-grid-properties)
+  - [Properties for the Parent (Grid Container)](#properties-for-the-parent-grid-container)
+    - [display:](#display)
+    - [grid-template-columns, grid-template-rows:](#grid-template-columns-grid-template-rows)
+    - [grid-template-area:](#grid-template-area)
+  - [Properties for the Children (Grid Items)](#properties-for-the-children-grid-items)
+  - [Special Units](#special-units)
+  - [Some notes](#some-notes)
   - [Position attribute](#position-attribute)
-  - [Resources](#resources)
+- [Resources](#resources)
 
-## Flexbox
+# Flexbox
 Horizontal or vertical one dimensional layout.  
 Flexbox is a module not a property, so some properties are meant for the container (parent element, known as "flex container") and some are meant to be set on the children (said "flex items").
 
@@ -26,7 +29,7 @@ Items will be laid out following either the main axis (from main-start to main-e
 
 *Note:* Flexbox layout is most appropriate to the components of an application, and small-scale layouts, while the Grid layout is intended for larger scale layouts.
 
-### Properties for the Parent (flex container)
+## Properties for the Parent (flex container)
 - display
   - This defines a flex container; inline or block depending on the given value. It enables a flex content fot all its direct children (flex or inline-flex)
 - flex-direction
@@ -44,7 +47,7 @@ Items will be laid out following either the main axis (from main-start to main-e
 - gap, row-gap, column-gap 
   - The gap property explicitly controls the space between flex items. It applies that spacing only between items not on the outer edges.
 
-### Properties for the Children (flex items)
+## Properties for the Children (flex items)
 - order
   - By default flex item are laid out in the source order. However the order property controls the order property controls the order in which they appear in the flex container. Items with the same order revert to source order.
 - flex-grow
@@ -62,10 +65,10 @@ Items will be laid out following either the main axis (from main-start to main-e
 - align-self
   - This allows the default alignment (or the one specified by align-items) to be overridden for individual flex items.
 
-### Examples
+## Examples
 See folder
 
-### Display Types
+## Display Types
 The display CSS property sets whether an element is treated as a block or inline box and the layout used for its children, such as flow layout, grid or flex. Here are some important types.
 - block
   - A block-level element always starts on a new line, and the browsers automatically add some space (a margin) before and after the element. A block-level element always takes up the full width available (stretches out to the left and right as far as it can).
@@ -76,17 +79,17 @@ The display CSS property sets whether an element is treated as a block or inline
 - none (display nothing)
 - grid (will  be covered in different section)
 
-### Old versions of flex
+## Old versions of flex
 - If you are looking at a blog post (or whatever) about Flexbox and you see display: box; or a property that is box-{*}, you are looking at the old 2009 version of Flexbox.
 - If you are looking at a blog post (or whatever) about Flexbox and you see display: flexbox; or the flex() function, you are looking at an awkward tweener phase in 2011.
 - If you are looking at a blog post (or whatever) about Flexbox and you see display: flex; and flex-{*} properties, you are looking at the current (as of this writing) specification.
 
-## Grid
+# Grid
 CSS Grid Layout (aka “Grid” or “CSS Grid”), is a two-dimensional grid-based layout system that, compared to any web layout system of the past, completely changes the way we design user interfaces. CSS has always been used to layout our web pages, but it’s never done a very good job of it. First, we used tables, then floats, positioning and inline-block, but all of these methods were essentially hacks and left out a lot of important functionality (vertical centering, for instance). Flexbox is also a very great layout tool, but its one-directional flow has different use cases — and they actually work together quite well! Grid is the very first CSS module created specifically to solve the layout problems we’ve all been hacking our way around for as long as we’ve been making websites.
 
 To get started you have to define a container element as a grid with display: grid, set the column and row sizes with grid-template-columns and grid-template-rows, and then place its child elements into the grid with grid-column and grid-row.
 
-### Important terminology
+## Important terminology
 - grid container
   - The element on which `display: grid` is applied. Its the direct parent of all the grid items
 - grid item
@@ -108,16 +111,16 @@ To get started you have to define a container element as a grid with display: gr
   - Here’s the grid area between row grid lines 1 and 3, and column grid lines 1 and 3.
   - ![grid area](https://css-tricks.com/wp-content/uploads/2018/11/terms-grid-area.svg)
 
-### CSS Grid Properties
+## CSS Grid Properties
 There are to many properties to cover properly so I will only cover the completly essentials here, go to the [CSS Tricks article](https://css-tricks.com/snippets/css/complete-guide-grid/#aa-css-grid-properties) for more information.
 
-### Properties for the Parent (Grid Container)
-**display:**
+## Properties for the Parent (Grid Container)
+### display:
 
 Defines the element as a grid container and establishes a new grid formatting context for its contents.
 Values: `grid` for a block-level grid and `inline-grid` for an inline-level grid
 
-**grid-template-columns, grid-template-rows:**
+### grid-template-columns, grid-template-rows:
 
 Defines the columns and rows of the grid with a space-separated list of values. The values represent the track size, and the space between them represents the grid line.
 
@@ -155,9 +158,42 @@ But you can choose to explicitly name the lines. Note the bracket syntax for the
 ```
 ![css grid with explicit naming](https://css-tricks.com/wp-content/uploads/2018/11/template-column-rows-02.svg)
 
-**grid-template-area:**
+- If your definition contains repeating parts, you can use the repeat() notation to streamline things.
+- If multiple lines share the same name, they can be referenced by their line name and count.
+- The fr unit allows you to set the size of a track as a fraction of the free space of the grid container. For example, this will set each item to one third the width of the grid container.
+  - The free space is calculated after any non-flexible items. In this example the total amount of free space available to the fr units doesn’t include the 50px.
+```css
+/* repeat syntax */
+.container {
+  grid-template-columns: repeat(3, 20px [col-start]);
+}
 
-### Properties for the Children (Grid Items)
+/* multiple lines with the same name */
+.item {
+  grid-column-start: col-start 2;
+}
+
+/* fr unit */
+.container {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+/* fr unit is distributed after any non-flexible items */
+.container {
+  grid-template-columns: 1fr 50px 1fr 1fr;
+}
+```
+
+### grid-template-area:
+
+Defines a grid template by referencing the names of the grid areas which are specified with the grid-area property. Repeating the name of a grid area causes the content to span those cells. A period signifies an empty cell. The syntax itself provides a visualization of the structure of the grid.
+
+*Values:*
+- `grid-area-name` - the name of a grid area specified with grid-area
+- `.` - a period signifies an empty grid cell
+- `none` - no grid areas are defined
+
+## Properties for the Children (Grid Items)
 - grid-column-start, grid-column-end, grid-row-start, grid-row-end
 - grid-column, grid-row
 - grid area
@@ -165,7 +201,7 @@ But you can choose to explicitly name the lines. Note the bracket syntax for the
 - align-self
 - place-self
 
-### Special Units
+## Special Units
 - fr units
 - sizing keywords
 - sizing functions
@@ -173,14 +209,14 @@ But you can choose to explicitly name the lines. Note the bracket syntax for the
 - masonry
 - subgrid
 
-### Some notes
+## Some notes
 - Something like a navbar should not be in the grid
 
 ## Position attribute
 - Position attribute
 - Column and Row/Table (more bootstrap stuff)
 
-## Resources
+# Resources
 - https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 - https://developer.mozilla.org/en-US/docs/Web/CSS
 - https://flexboxfroggy.com/
