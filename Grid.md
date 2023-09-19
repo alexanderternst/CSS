@@ -14,7 +14,7 @@
     - [justify-content](#justify-content)
     - [align-content](#align-content)
     - [place-content](#place-content)
-    - [grid (maybe)](#grid-maybe)
+    - [grid](#grid-1)
   - [Properties for the Children (Grid Items)](#properties-for-the-children-grid-items)
     - [grid-column-start, grid-column-end, grid-row-start, grid-row-end](#grid-column-start-grid-column-end-grid-row-start-grid-row-end)
     - [grid-column, grid-row](#grid-column-grid-row)
@@ -22,6 +22,7 @@
     - [justify-self](#justify-self)
     - [align-self](#align-self)
     - [place-self](#place-self)
+  - [Fluid columns snippet](#fluid-columns-snippet)
   - [Special Units](#special-units)
   - [Some notes](#some-notes)
 
@@ -181,22 +182,240 @@ Specifies the size of the grid lines. You can think of it like setting the width
 - `<line-size>` - a length value
 
 ```css
+.container {
+  /* standard */
+  column-gap: <line-size>;
+  row-gap: <line-size>;
 
+  /* old */
+  grid-column-gap: <line-size>;
+  grid-row-gap: <line-size>;
+}
 ```
+
+*Example:*
+
+```css
+.container {
+  grid-template-columns: 100px 50px 100px;
+  grid-template-rows: 80px auto 80px; 
+  column-gap: 10px;
+  row-gap: 15px;
+}
+```
+
+![column and row gap in css grid](https://css-tricks.com/wp-content/uploads/2018/11/dddgrid-gap.svg)
+The gutters are only created between the columns/rows, not on the outer edges.
 
 ### justify-items
 
+Aligns grid items along the inline (row) axis (as opposed to align-items which aligns along the block (column) axis). This value applies to all grid items inside the container.
+
+*Values:*
+
+- `start` - aligns items to be flush with the start edge of their cell
+- `end` - aligns items to be flush with the end edge of their cell
+- `center` - aligns items in the center of their cell
+- `stretch` - fills the whole width of the cell (this is the default)
+
+```css
+.container {
+  justify-items: start | end | center | stretch;
+}
+```
+
+*Examples:*
+
+```css
+.container {
+  justify-items: start;
+}
+```
+
+![justify-items css grid](https://css-tricks.com/wp-content/uploads/2018/11/justify-items-start.svg)
+
+```css
+.container {
+  justify-items: end;
+}
+```
+
+![justify-items css grid](https://css-tricks.com/wp-content/uploads/2018/11/justify-items-end.svg)
+
+```css
+.container {
+  justify-items: center;
+}
+```
+
+![justify-items css grid](https://css-tricks.com/wp-content/uploads/2018/11/justify-items-center.svg)
+
+```css
+.container {
+  justify-items: stretch;
+}
+```
+
+![justify-items css grid](https://css-tricks.com/wp-content/uploads/2018/11/justify-items-stretch.svg)
+This behavior can also be set on individual grid items via the justify-self property.
+
 ### align-items
+
+Aligns grid items along the block (column) axis (as opposed to justify-items which aligns along the inline (row) axis). This value applies to all grid items inside the container.
+
+*Values:*
+
+- `stretch` - fills the whole height of the cell (this is the default)
+- `start` - aligns items to be flush with the start edge of their cell
+- `end` - aligns items to be flush with the end edge of their cell
+- `center` - aligns items in the center of their cell
+- `baseline` - align items along text baseline. There are modifiers to baseline — first baseline and last baseline which will use the baseline from the first or last line in the case of multi-line text.
+
+```css
+.container {
+  align-items: start | end | center | stretch;
+}
+```
+
+*Examples:*
+
+```css
+.container {
+  align-items: start;
+}
+```
+
+![align-items css grid](https://css-tricks.com/wp-content/uploads/2018/11/align-items-start.svg)
+
+```css
+.container {
+  align-items: end;
+}
+```
+
+![align-items css grid](https://css-tricks.com/wp-content/uploads/2018/11/align-items-end.svg)
+
+```css
+.container {
+  align-items: center;
+}
+```
+
+![align-items css grid](https://css-tricks.com/wp-content/uploads/2018/11/align-items-center.svg)
+
+```css
+.container {
+  align-items: stretch;
+}
+```
+
+![align-items css grid](https://css-tricks.com/wp-content/uploads/2018/11/align-items-stretch.svg)
+This behavior can also be set on individual grid items via the align-self property.
 
 ### place-items
 
+place-items sets both the align-items and justify-items properties in a single declaration.
+
+*Values:*
+
+- `<align-items> / <justify-items>` – The first value sets align-items, the second value justify-items. If the second value is omitted, the first value is assigned to both properties.
+
+This can be very useful for super quick multi-directional centering:
+
+```css
+.center {
+  display: grid;
+  place-items: center;
+}
+```
+
+Do the same things as above just for the entire grid if there is free space in parent element of grid.
+
 ### justify-content
+
+Sometimes the total size of your grid might be less than the size of its grid container. This could happen if all of your grid items are sized with non-flexible units like px. In this case you can set the alignment of the grid within the grid container. This property aligns the grid along the inline (row) axis (as opposed to align-content which aligns the grid along the block (column) axis).
+
+- `start` – aligns the grid to be flush with the start edge of the grid container
+- `end` – aligns the grid to be flush with the end edge of the grid container
+- `center` – aligns the grid in the center of the grid container
+- `stretch` – resizes the grid items to allow the grid to fill the full width of the grid container
+- `space-around` – places an even amount of space between each grid item, with half-sized spaces on the far ends
+- `space-between` – places an even amount of space between each grid item, with no space at the far ends
+- `space-evenly` – places an even amount of space between each grid item, including the far ends
+
+```css
+.container {
+  justify-content: start | end | center | stretch | space-around | space-between | space-evenly;    
+}
+```
+
+*Examples (with images):*
+
+```css
+.container {
+  justify-content: space-around;    
+}
+```
+
+![align-content css grid](https://css-tricks.com/wp-content/uploads/2018/11/justify-content-space-around.svg)
+
+```css
+.container {
+  justify-content: space-between;    
+}
+```
+
+![align-content css grid](https://css-tricks.com/wp-content/uploads/2018/11/justify-content-space-between.svg)
+No further examples available here because all the other properties follow the same concept as other styles which were already explained. See the full [CSS Tricks](https://css-tricks.com/snippets/css/complete-guide-grid/#aa-justify-content) article for all examples.
 
 ### align-content
 
+Sometimes the total size of your grid might be less than the size of its grid container. This could happen if all of your grid items are sized with non-flexible units like px. In this case you can set the alignment of the grid within the grid container. This property aligns the grid along the block (column) axis (as opposed to justify-content which aligns the grid along the inline (row) axis).
+
+- `start` – aligns the grid to be flush with the start edge of the grid container
+- `end` – aligns the grid to be flush with the end edge of the grid container
+- `center` – aligns the grid in the center of the grid container
+- `stretch` – resizes the grid items to allow the grid to fill the full height of the grid container
+- `space-around` – places an even amount of space between each grid item, with half-sized spaces on the far ends
+- `space-between` – places an even amount of space between each grid item, with no space at the far ends
+- `space-evenly` – places an even amount of space between each grid item, including the far ends
+
+```css
+.container {
+  justify-content: start | end | center | stretch | space-around | space-between | space-evenly;    
+}
+```
+
+*Examples (with images):*
+
+```css
+.container {
+  align-content: space-around;    
+}
+```
+
+![align-content css grid](https://css-tricks.com/wp-content/uploads/2018/11/align-content-space-around.svg)
+
+```css
+.container {
+  align-content: space-between;    
+}
+```
+
+![align-content css grid](https://css-tricks.com/wp-content/uploads/2018/11/align-content-space-between.svg)
+No further examples available here because all the other properties follow the same concept as other styles which were already explained. See the full [CSS Tricks](https://css-tricks.com/snippets/css/complete-guide-grid/#aa-align-content) article for all examples.
+
 ### place-content
 
-### grid (maybe)
+place-content sets both the align-content and justify-content properties in a single declaration.
+
+*Values:*
+
+- `<align-content> / <justify-content>` – The first value sets align-content, the second value justify-content. If the second value is omitted, the first value is assigned to both properties.
+
+### grid
+
+A shorthand for setting all of the following properties in a single declaration: grid-template-rows, grid-template-columns, grid-template-areas, grid-auto-rows, grid-auto-columns, and grid-auto-flow (Note: You can only specify the explicit or the implicit grid properties in a single grid declaration).
 
 ## Properties for the Children (Grid Items)
 
@@ -440,6 +659,11 @@ To align all the items in a grid, this behavior can also be set on the grid cont
 
 ![place-self css grid](https://css-tricks.com/wp-content/uploads/2018/11/place-self-center-stretch.svg)
 All major browsers except Edge support the place-self shorthand property.
+
+## Fluid columns snippet
+
+Fluid width columns that break into more or less columns as space is available, with no media queries!
+See [example](/examples_grid/fluidcolumn.html) for an example.
 
 ## Special Units
 
