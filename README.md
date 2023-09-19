@@ -14,10 +14,18 @@
     - [display:](#display)
     - [grid-template-columns, grid-template-rows:](#grid-template-columns-grid-template-rows)
     - [grid-template-area:](#grid-template-area)
+    - [column-gap row-gap grid-column-gap grid-row-gap](#column-gap-row-gap-grid-column-gap-grid-row-gap)
+    - [justify-items](#justify-items)
+    - [align-items](#align-items)
+    - [place-items](#place-items)
+    - [justify-content](#justify-content)
+    - [align-content](#align-content)
+    - [place-content](#place-content)
+    - [grid (maybe)](#grid-maybe)
   - [Properties for the Children (Grid Items)](#properties-for-the-children-grid-items)
     - [grid-column-start, grid-column-end, grid-row-start, grid-row-end](#grid-column-start-grid-column-end-grid-row-start-grid-row-end)
     - [grid-column, grid-row](#grid-column-grid-row)
-    - [grid area](#grid-area)
+    - [grid-area](#grid-area)
     - [justify-self](#justify-self)
     - [align-self](#align-self)
     - [place-self](#place-self)
@@ -227,6 +235,22 @@ Defines a grid template by referencing the names of the grid areas which are spe
 That’ll create a grid that’s four columns wide by three rows tall. The entire top row will be composed of the header area. The middle row will be composed of two main areas, one empty cell, and one sidebar area. The last row is all footer.
 ![graphic of grid-template-area](https://css-tricks.com/wp-content/uploads/2018/11/dddgrid-template-areas.svg)
 
+### column-gap row-gap grid-column-gap grid-row-gap
+
+### justify-items
+
+### align-items
+
+### place-items
+
+### justify-content
+
+### align-content
+
+### place-content
+
+### grid (maybe)
+
 ## Properties for the Children (Grid Items)
 ### grid-column-start, grid-column-end, grid-row-start, grid-row-end
 
@@ -272,23 +296,168 @@ Determines a grid item’s location within the grid by referring to specific gri
 
 ### grid-column, grid-row
 
+Shorthand for grid-column-start + grid-column-end, and grid-row-start + grid-row-end, respectively.
 
+*Values:*
+- `<start-line>/<end-line>` - each one accepts all the same values as the longhand version, including span
+```css
+.item {
+  grid-column: <start-line> / <end-line> | <start-line> / span <value>;
+  grid-row: <start-line> / <end-line> | <start-line> / span <value>;
+}
+```
 
-### grid area
+*Example (with image):*
+```css
+.item-c {
+  grid-column: 3 / span 2;
+  grid-row: third-line / 4;
+}
+```
+![example of grid-column/grid-row shorthand](https://css-tricks.com/wp-content/uploads/2018/11/grid-column-row.svg)
+- If no end line value is declared, the item will span 1 track by default.
 
+### grid-area
 
+Gives an item a name so that it can be referenced by a template created with the grid-template-areas property. Alternatively, this property can be used as an even shorter shorthand for grid-row-start + grid-column-start + grid-row-end + grid-column-end.
+
+*Values:*
+- `<name>` - a name of your choosing
+- `<row-start> / <column-start> / <row-start> / <column-end>` - can be numbers or named lines
+```css
+.item {
+  grid-area: <name> | <row-start> / <column-start> / <row-end> / <column-end>;
+}
+```
+
+*Examples:*  
+As a way to assign a name to the item:
+```css
+.item-d {
+  grid-area: header;
+}
+```
+As the short-shorthand for grid-row-start + grid-column-start + grid-row-end + grid-column-end:
+```css
+.item-d {
+  grid-area: 1 / col4-start / last-line / 6;
+}
+```
+![example of grid-area](https://css-tricks.com/wp-content/uploads/2018/11/grid-area.svg)
 
 ### justify-self
 
+Aligns a grid item inside a cell along the inline (row) axis (as opposed to align-self which aligns along the block (column) axis). This value applies to a grid item inside a single cell.
 
+*Values:*
+- `start` - aligns the grid item to be flush with the start edge of the cell
+- `end` - aligns the grid item to be flush with the end edge of the cell
+- `center` - aligns the grid item in the center of the cell
+- `stretch` - fills the whole width of the cell (this is the default)
+```css
+.item {
+  justify-self: start | end | center | stretch;
+}
+```
+
+*Examples (with images):*
+```css
+.item-a {
+  justify-self: start;
+}
+```
+![justify-self grid item](https://css-tricks.com/wp-content/uploads/2018/11/justify-self-start.svg)
+
+```css
+.item-a {
+  justify-self: end;
+}
+```
+![justify-self grid item](https://css-tricks.com/wp-content/uploads/2018/11/justify-self-end.svg)
+
+```css
+.item-a {
+  justify-self: center;
+}
+```
+![justify-self grid item](https://css-tricks.com/wp-content/uploads/2018/11/justify-self-center.svg)
+
+```css
+.item-a {
+  justify-self: stretch;
+}
+```
+![justify-self grid item](https://css-tricks.com/wp-content/uploads/2018/11/justify-self-stretch.svg)
+To set alignment for all the items in a grid, this behavior can also be set on the grid container via the justify-items property.
 
 ### align-self
 
+Aligns a grid item inside a cell along the block (column) axis (as opposed to justify-self which aligns along the inline (row) axis). This value applies to the content inside a single grid item.
 
+*Values:*
+- `start` - aligns the grid item to be flush with the start edge of the cell
+- `end` - aligns the grid item to be flush with the end edge of the cell
+- `center` - aligns the grid item in the center of the cell
+- `stretch` - fills the whole height of the cell (this is the default)
+```css
+.item {
+  align-self: start | end | center | stretch;
+}
+```
+
+*Examples (with images):*
+```css
+.item-a {
+  align-self: start;
+}
+```
+![align-self grid item](https://css-tricks.com/wp-content/uploads/2018/11/align-self-start.svg)
+
+```css
+.item-a {
+  align-self: end;
+}
+```
+![align-self grid item](https://css-tricks.com/wp-content/uploads/2018/11/align-self-end.svg)
+
+```css
+.item-a {
+  align-self: center;
+}
+```
+![align-self grid item](https://css-tricks.com/wp-content/uploads/2018/11/align-self-center.svg)
+
+```css
+.item-a {
+  align-self: stretch;
+}
+```
+![align-self grid item](https://css-tricks.com/wp-content/uploads/2018/11/align-self-stretch.svg)
+To align all the items in a grid, this behavior can also be set on the grid container via the align-items property.
 
 ### place-self
 
+`place-self` sets both the `align-self` and `justify-self` properties in a single declaration (shorthand for align-self and justify-self).
 
+*Values:*
+- `auto` - The "default" alignment for the layout mode
+- `<align-self>/<justify-self>` - The first value sets align-self, the second value justify-self. If the second value is omitted, the first value is assigned to both properties
+
+*Examples (with images):*
+```css
+.item-a {
+  place-self: center;
+}
+```
+![place-self css grid](https://css-tricks.com/wp-content/uploads/2018/11/place-self-center.svg)
+
+```css
+.item-a {
+  place-self: center stretch;
+}
+```
+![place-self css grid](https://css-tricks.com/wp-content/uploads/2018/11/place-self-center-stretch.svg)
+All major browsers except Edge support the place-self shorthand property.
 
 ## Special Units
 - fr units
