@@ -2,11 +2,11 @@
 
 ## Flexbox
 
-[Learn more...](/Flexbox.md)
+[Learn more about Flexbox](/Flexbox.md)
 
 ## Grid
 
-[Learn more...](/Grid.md)
+[Learn more about Grid](/Grid.md)
 
 ## Position attribute
 
